@@ -89,7 +89,7 @@ HTML = f"""<!DOCTYPE html>
 }}
 *{{box-sizing:border-box}}
 html{{scroll-behavior:smooth}}
-section[id],div[id]{{scroll-margin-top:118px}}
+section[id],div[id]{{scroll-margin-top:170px}}
 body{{margin:0;background:var(--ivory);color:var(--ink);font-family:'Noto Kufi Arabic',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}}
 img{{max-width:100%;display:block}}
 a{{color:inherit;text-decoration:none}}
@@ -172,7 +172,7 @@ a{{color:inherit;text-decoration:none}}
 .it-txt{{display:flex;flex-direction:column;min-width:0}}
 .it-name{{font-size:14px;font-weight:600}}
 .it-en{{font-size:11.5px;color:var(--muted);direction:ltr;text-align:start}}
-.it-wa{{margin-inline-start:auto;width:30px;height:30px;border-radius:50%;background:#F1F7F3;display:grid;place-items:center;flex:none;transition:.2s}}
+.it-wa{{margin-inline-start:8px;width:30px;height:30px;border-radius:50%;background:#F1F7F3;display:grid;place-items:center;flex:none;transition:.2s}}
 .it-wa svg{{width:15px;height:15px;fill:var(--wa)}}
 .it-wa:hover{{background:var(--wa)}}
 .it-wa:hover svg{{fill:#fff}}
