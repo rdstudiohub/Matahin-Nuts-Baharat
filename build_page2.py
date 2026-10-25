@@ -320,6 +320,13 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
        data-ur="ہم مصالحے آپ کے سامنے پیستے ہیں، ہر چیز کاؤنٹر پر وزن کرتے ہیں اور آپ کے باورچی خانے کے مطابق پیک کرتے ہیں — گھروں اور تھوک میں خریدنے والوں کے لیے۔ {total_items} اشیاء دستیاب ہیں، اور جو چیز نہ ملے وہ ہم منگوا دیتے ہیں۔">نطحن البهارات أمامك، ونوزن كل شيء على الطاولة، ونعبئه كما يحتاج مطبخك — للبيوت وللمطابخ التي تشتري بالجملة. {total_items} صنفاً على الرف، وإذا لم تجد شيئاً نجلبه لك.</p>
   </section>
 
+  <div class="list-head" style="margin-top:26px">
+    <h2 data-en="Most asked for" data-ar="الأكثر طلباً" data-ur="سب سے زیادہ مانگی جانے والی اشیاء">الأكثر طلباً</h2>
+    <p data-en="A selection from the shelves — the full 108-item list is below."
+       data-ar="مختارات من الأرفف — القائمة الكاملة (108 صنفاً) في الأسفل."
+       data-ur="رفوف سے چند منتخب اشیاء — مکمل 108 اشیاء کی فہرست نیچے ہے۔">مختارات من الأرفف — القائمة الكاملة (108 صنفاً) في الأسفل.</p>
+  </div>
+
   <div class="cats" id="cats" role="tablist">
 {chips}
   </div>
@@ -448,7 +455,7 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
     var rtl = (lang === 'ar' || lang === 'ur');
     document.documentElement.lang = lang;
     document.documentElement.dir = rtl ? 'rtl' : 'ltr';
-    document.querySelectorAll('[data-en]').forEach(function(el){{
+    document.querySelectorAll('[data-en],[data-href-en]').forEach(function(el){{
       if (el.tagName === 'A' && el.hasAttribute('data-href-' + lang)) {{
         el.setAttribute('href', el.getAttribute('data-href-' + lang));
       }}
