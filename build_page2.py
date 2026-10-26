@@ -9,8 +9,32 @@ WA = "966537373257"
 TEL = "+966537373257"
 WA_MAIN = "https://wa.me/%s?text=%s" % (WA, urllib.parse.quote("السلام عليكم، أرغب بالاستفسار عن المنتجات"))
 
+# Exact shop location (Google Maps pin, supplied 26 Oct 2026)
+LAT, LNG = "26.4291755", "50.1067007"
+ADDR_EN = "4491 10th St, Al Adamah 7111, Dammam 32242"
+ADDR_AR = "4491 شارع العاشر، حي العدامة، الدمام 32242"
+ADDR_UR = "4491 دسواں اسٹریٹ، العدامہ، دمام 32242"
+MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={LAT},{LNG}"
+MAP_EMBED = f"https://www.google.com/maps?q={LAT},{LNG}&amp;z=16&amp;hl=ar&amp;output=embed"
+
 def wa(msg):
     return "https://wa.me/%s?text=%s" % (WA, urllib.parse.quote(msg))
+
+SCHEMA = json.dumps({
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    "name": "مطاحن مكسرات بهارات",
+    "alternateName": "Matahin Nuts & Spices",
+    "url": "https://rdstudiohub.github.io/Matahin-Nuts-Baharat/",
+    "telephone": "+966537373257",
+    "image": "https://rdstudiohub.github.io/Matahin-Nuts-Baharat/assets/img/banner-poster.jpg",
+    "address": {"@type": "PostalAddress", "streetAddress": "4491 10th St",
+                "addressLocality": "Dammam", "addressRegion": "Al Adamah",
+                "postalCode": "32242", "addressCountry": "SA"},
+    "geo": {"@type": "GeoCoordinates", "latitude": float(LAT), "longitude": float(LNG)},
+    "hasMap": MAPS_URL,
+    "sameAs": ["https://maps.app.goo.gl/9oe392KLfeHxVCUa7"],
+}, ensure_ascii=False)
 
 def card(p):
     o = {"en": f"Hello, I would like to order: {p['en']}",
@@ -77,6 +101,8 @@ HTML = f"""<!DOCTYPE html>
 <meta property="og:description" content="مكسرات فاخرة · قهوة مختارة · طعم أصيل — أفضل الأسعار لدينا">
 <meta property="og:image" content="assets/img/banner-poster.jpg">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{SCHEMA}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
@@ -198,13 +224,10 @@ a{{color:inherit;text-decoration:none}}
 /* location */
 .loc{{padding:clamp(34px,6vw,64px) 0 0}}
 .loc-card{{margin-top:20px;display:grid;grid-template-columns:1.05fr .95fr;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}}
-.map{{position:relative;min-height:320px;background:radial-gradient(circle at 30% 30%,#E9F0E6,#E3EBDF 40%,#DCE6D6)}}
-.map::before{{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(20,80,59,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,80,59,.07) 1px,transparent 1px);background-size:44px 44px}}
-.map .pin{{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px}}
-.pin-dot{{width:56px;height:56px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin:0 auto 10px;box-shadow:0 10px 24px rgba(20,80,59,.28)}}
-.pin-dot svg{{width:26px;height:26px;fill:#fff}}
-.map .pin p{{margin:0;font-weight:700;color:var(--green);font-size:14px}}
-.map .pin small{{color:var(--muted);font-size:12px}}
+.map{{position:relative;min-height:340px;background:#E3EBDF}}
+.map iframe{{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(1.02)}}
+.map .map-tag{{position:absolute;inset-inline-start:14px;bottom:14px;z-index:2;background:rgba(250,247,240,.95);border:1px solid var(--line);border-radius:12px;padding:8px 12px;box-shadow:var(--shadow);font-size:12.5px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:7px}}
+.map .map-tag svg{{width:15px;height:15px;fill:var(--gold)}}
 .loc-info{{padding:clamp(22px,3.4vw,36px)}}
 .loc-info h3{{margin:0 0 4px;color:var(--green);font-size:20px}}
 .loc-info .sub{{margin:0 0 16px;color:var(--muted);font-size:13px}}
@@ -388,11 +411,8 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
     <h2 data-en="Find us" data-ar="موقعنا" data-ur="ہم کہاں ہیں">موقعنا</h2>
     <div class="loc-card">
       <div class="map">
-        <div class="pin">
-          <div class="pin-dot"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></div>
-          <p data-en="Dammam — Al-Adama" data-ar="الدمام — العدامة" data-ur="الدمام — العدامة">الدمام — العدامة</p>
-          <small data-en="Tap “Open in Maps” for the exact pin" data-ar="اضغط «افتح في الخرائط» للموقع الدقيق" data-ur="درست لوکیشن کے لیے «نقشے میں کھولیں» دبائیں">اضغط «افتح في الخرائط» للموقع الدقيق</small>
-        </div>
+        <iframe src="{MAP_EMBED}" title="Matahin Nuts &amp; Spices — Google Maps location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map-tag"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span data-en="4491 10th St · Al-Adama" data-ar="4491 شارع العاشر · العدامة" data-ur="4491 دسواں اسٹریٹ · العدامہ">4491 شارع العاشر · العدامة</span></div>
       </div>
       <div class="loc-info">
         <h3 data-en="Matahin Nuts &amp; Spices" data-ar="مطاحن مكسرات بهارات" data-ur="مطاحن مكسرات بهارات">مطاحن مكسرات بهارات</h3>
@@ -400,7 +420,7 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
         <div class="row">
           <svg viewBox="0 0 24 24"><path d="M12 21s7-7.8 7-13a7 7 0 1 0-14 0c0 5.2 7 13 7 13Z"/><circle cx="12" cy="8" r="2.5"/></svg>
           <div><b data-en="Address" data-ar="العنوان" data-ur="پتہ">العنوان</b>
-          <span data-en="Al-Adama district, Dammam, Saudi Arabia" data-ar="حي العدامة، الدمام، المملكة العربية السعودية" data-ur="العدامة، الدمام، سعودی عرب">حي العدامة، الدمام، المملكة العربية السعودية</span></div>
+          <span data-en="{ADDR_EN}" data-ar="{ADDR_AR}" data-ur="{ADDR_UR}">{ADDR_AR}</span></div>
         </div>
         <div class="row">
           <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/></svg>
@@ -414,7 +434,7 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
         </div>
         <div class="loc-btns">
           <a class="btn-wa" href="{WA_MAIN}" target="_blank" rel="noopener" data-en="WhatsApp us" data-ar="واتساب" data-ur="واٹس ایپ">واتساب</a>
-          <a class="btn-map" href="https://www.google.com/maps/search/?api=1&amp;query=%D9%85%D8%B7%D8%A7%D8%AD%D9%86%20%D9%85%D9%83%D8%B3%D8%B1%D8%A7%D8%AA%20%D8%A8%D9%87%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AF%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%B9%D8%AF%D8%A7%D9%85%D8%A9" target="_blank" rel="noopener" data-en="Open in Maps" data-ar="افتح في الخرائط" data-ur="نقشے میں کھولیں">افتح في الخرائط</a>
+          <a class="btn-map" href="{MAPS_URL}" target="_blank" rel="noopener" data-en="Open in Maps" data-ar="افتح في الخرائط" data-ur="نقشے میں کھولیں">افتح في الخرائط</a>
         </div>
       </div>
     </div>
