@@ -74,11 +74,7 @@ d.ellipse([px - 17, py - 62, px + 17, py - 28], fill=GREEN)
 d.ellipse([px - 8, py - 53, px + 8, py - 37], fill=(255, 255, 255, 255))
 d.ellipse([px - 4, py - 49, px + 4, py - 41], fill=(184, 134, 59, 255))
 
-# attribution (required by OSM)
-txt = "© OpenStreetMap contributors"
-tw = d.textlength(txt)
-d.rectangle([W - tw - 20, H - 26, W, H], fill=(255, 255, 255, 205))
-d.text((W - tw - 10, H - 21), txt, fill=(70, 70, 70, 255))
+# attribution lives in the HTML overlay so it is never cropped
 
 img.convert("RGB").save(OUT, "JPEG", quality=84, optimize=True, progressive=True)
 print("wrote", OUT, os.path.getsize(OUT) // 1024, "KB", img.size)
