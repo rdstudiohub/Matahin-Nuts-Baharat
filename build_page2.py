@@ -15,7 +15,6 @@ ADDR_EN = "4491 10th St, Al Adamah 7111, Dammam 32242"
 ADDR_AR = "4491 شارع العاشر، حي العدامة، الدمام 32242"
 ADDR_UR = "4491 دسواں اسٹریٹ، العدامہ، دمام 32242"
 MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={LAT},{LNG}"
-MAP_EMBED = f"https://www.google.com/maps?q={LAT},{LNG}&amp;z=16&amp;hl=ar&amp;output=embed"
 
 def wa(msg):
     return "https://wa.me/%s?text=%s" % (WA, urllib.parse.quote(msg))
@@ -225,7 +224,7 @@ a{{color:inherit;text-decoration:none}}
 .loc{{padding:clamp(34px,6vw,64px) 0 0}}
 .loc-card{{margin-top:20px;display:grid;grid-template-columns:1.05fr .95fr;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}}
 .map{{position:relative;min-height:340px;background:#E3EBDF}}
-.map iframe{{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(1.02)}}
+.map picture,.map img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}}
 .map .map-tag{{position:absolute;inset-inline-start:14px;bottom:14px;z-index:2;background:rgba(250,247,240,.95);border:1px solid var(--line);border-radius:12px;padding:8px 12px;box-shadow:var(--shadow);font-size:12.5px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:7px}}
 .map .map-tag svg{{width:15px;height:15px;fill:var(--gold)}}
 .loc-info{{padding:clamp(22px,3.4vw,36px)}}
@@ -410,10 +409,10 @@ html[lang="en"] .p-desc,html[lang="en"] .act,html[lang="en"] .chip,html[lang="en
   <section class="loc" id="location">
     <h2 data-en="Find us" data-ar="موقعنا" data-ur="ہم کہاں ہیں">موقعنا</h2>
     <div class="loc-card">
-      <div class="map">
-        <iframe src="{MAP_EMBED}" title="Matahin Nuts &amp; Spices — Google Maps location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <a class="map" href="{MAPS_URL}" target="_blank" rel="noopener" aria-label="Open shop location in Google Maps">
+        <img src="assets/img/location-map.jpg" alt="Matahin Nuts &amp; Spices — 4491 10th St, Al Adama, Dammam 32242" width="1200" height="620" loading="lazy">
         <div class="map-tag"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span data-en="4491 10th St · Al-Adama" data-ar="4491 شارع العاشر · العدامة" data-ur="4491 دسواں اسٹریٹ · العدامہ">4491 شارع العاشر · العدامة</span></div>
-      </div>
+      </a>
       <div class="loc-info">
         <h3 data-en="Matahin Nuts &amp; Spices" data-ar="مطاحن مكسرات بهارات" data-ur="مطاحن مكسرات بهارات">مطاحن مكسرات بهارات</h3>
         <p class="sub" data-en="Pansari · grocery · fresh-ground spices" data-ar="بقالة · مؤن · بهارات مطحونة طازجة" data-ur="پنساری · کریانہ · تازہ مصالحے">بقالة · مؤن · بهارات مطحونة طازجة</p>
